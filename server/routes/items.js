@@ -18,8 +18,15 @@ router.delete("/:id", deleteItem);
 
 // Upload image route
 router.post("/upload", upload.array("images"), (req, res) => {
-  const imageUrls = req.files.map((file) => file.path);
-  res.json({ imageUrls });
-});
+    try {
+      // Map the uploaded files to their Cloudinary URLs
+      const imageUrls = req.files.map((file) => file.path);
+  
+      // Send the URLs back in the response
+      res.status(200).json({ imageUrls });
+    } catch (err) {
+      res.status(500).json({ error: "Failed to upload images", details: err.message });
+    }
+  });
 
 export default router;
