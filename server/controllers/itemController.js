@@ -13,14 +13,14 @@ export const getItems = async (req, res) => {
 
 // POST create new item
 export const createItem = async (req, res) => {
-    const { name, description, price, category, image, sold } = req.body;
+    const { name, description, price, category, images, sold } = req.body;
     try {
       const newItem = new Item({
         name,
         description,
         price,
         category,
-        image,
+        images,
         sold: sold || false, // defaults to false
       });
       await newItem.save();

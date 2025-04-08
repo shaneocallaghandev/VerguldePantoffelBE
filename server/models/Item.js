@@ -5,7 +5,7 @@ const itemSchema = new mongoose.Schema({
   description: String,
   price: Number,
   category: String,
-  image: [String],
+  images: [String],
   sold: { type: Boolean, default: false },
 });
 
