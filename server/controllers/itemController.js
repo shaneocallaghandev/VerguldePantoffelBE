@@ -11,6 +11,20 @@ export const getItems = async (req, res) => {
   }
 };
 
+export const getItemById = async (req, res) => {
+  try { 
+    const { id } = req.params;
+    const item = await Item.findById(id);
+    if (!item) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+
+    res.status(200).json(item); // Return the item
+  } catch (err) {
+    res.status(500).json({ error: "Failed to fetch item", details: err.message });
+  }
+};
+
 // POST create new item
 export const createItem = async (req, res) => {
     const { name, description, price, category, images, sold } = req.body;

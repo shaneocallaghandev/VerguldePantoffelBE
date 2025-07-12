@@ -11,11 +11,11 @@ import { upload } from "../utils/cloudinary.js";
 const router = express.Router();
 
 router.get("/", getItems);
+router.get("/:id", getItemById);
 router.post("/", createItem);
 router.patch("/:id", updateItem);
 router.put("/:id", updateItem); 
 router.delete("/:id", deleteItem);
-
 
 // Upload image route
 router.post("/upload", upload.array("images"), (req, res) => {
