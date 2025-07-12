@@ -5,6 +5,7 @@ import {
   createItem,
   updateItem,
   deleteItem,
+  getItemById,
 } from "../controllers/itemController.js";
 import { upload } from "../utils/cloudinary.js";
 
