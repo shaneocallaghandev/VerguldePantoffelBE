@@ -27,7 +27,7 @@ export const getItemById = async (req, res) => {
 
 // POST create new item
 export const createItem = async (req, res) => {
-    const { name, description, price, category, images, sold } = req.body;
+    const { name, description, price, category, images, sold, favorite } = req.body;
     try {
       const newItem = new Item({
         name,
@@ -35,7 +35,8 @@ export const createItem = async (req, res) => {
         price,
         category,
         images,
-        sold: sold || false, // defaults to false
+        sold: sold || false,
+        favorite: favorite ||  false
       });
       await newItem.save();
       res.status(201).json(newItem);

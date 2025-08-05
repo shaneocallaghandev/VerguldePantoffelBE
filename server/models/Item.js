@@ -7,6 +7,8 @@ const itemSchema = new mongoose.Schema({
   category: String,
   images: [String],
   sold: { type: Boolean, default: false },
+  dateAdded: { type: Date, default: Date.now },
+  favorite: { type: Boolean, default: false },
 });
 
 export default mongoose.model("Item", itemSchema);
