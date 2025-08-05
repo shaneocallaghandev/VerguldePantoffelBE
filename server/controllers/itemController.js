@@ -70,4 +70,22 @@ export const deleteItem = async (req, res) => {
   }
 };
 
+// POST update all items
+// This endpoint updates all items to set dateAdded to current date and favorite to false
+export const updateAllItems = async (req, res) => {
+  try {
+    const result = await Item.updateMany(
+      {}, // Match all documents
+      {
+        $set: {
+          dateAdded: new Date(), // Set the current date
+          favorite: false, // Default to false
+        },
+      }
+    );
 
+    res.status(200).json({ message: `Updated ${result.modifiedCount} items` });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to update items", details: err.message });
+  }
+};

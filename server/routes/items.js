@@ -6,8 +6,10 @@ import {
   updateItem,
   deleteItem,
   getItemById,
+  updateAllItems,
 } from "../controllers/itemController.js";
 import { upload } from "../utils/cloudinary.js";
+
 
 const router = express.Router();
 
@@ -17,6 +19,7 @@ router.post("/", createItem);
 router.patch("/:id", updateItem);
 router.put("/:id", updateItem); 
 router.delete("/:id", deleteItem);
+router.post("/update-all-items", updateAllItems);
 
 // Upload image route
 router.post("/upload", upload.array("images"), (req, res) => {
@@ -30,5 +33,6 @@ router.post("/upload", upload.array("images"), (req, res) => {
       res.status(500).json({ error: "Failed to upload images", details: err.message });
     }
   });
+  
 
 export default router;
